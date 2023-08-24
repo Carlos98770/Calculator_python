@@ -1,12 +1,12 @@
 import math as mt
 class Calculator:
     def __init__(self):
-        self.A = 10
-        self.B = 11
-        self.C = 12
-        self.D = 13
-        self.E = 14
-        self.F = 15
+        self.plusten = {
+            'A':10,
+            'B':11,
+            'C':12,
+            'D':13
+        }
 
     def ten_ForBaseInt(self,num,base):
         value = []
@@ -55,25 +55,32 @@ class Calculator:
         
         #Algoritmo para parte DECIMAL
         flag = True
+        values = []
         while flag:
-            values = []
-            mult = number_dec * base
+            mult = round(number_dec * base, 10)
             value_dec.append(int(mult))
             number_dec = mult - int(mult)
             values.append(number_dec)
-            print(mult)
-            print(number_dec)
-            for i in values:
-                if (mult == i) or (number_dec == 0):
-                    flag = False
-                    
-
+            if len(values) != len(set(values)):
+                value_dec.append('...')
+                flag = False
+                
+            
+            if number_dec == 0:
+                flag = False
+ 
         for element in value_dec:
             part_int += str(element)
         
         return part_int
 
-#CORRIGIR O COMPORTAMENTO DA FUNCAO TenForBaseFloat
+
+
+'''
+Coisas a Fazer: Funcao de baseForTenFloat
+solucionar quando a base for > 10
+'''
+
 
 
 
