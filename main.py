@@ -12,25 +12,85 @@ class Calculator:
 
         self.key = self.plusten.keys()
 
-    def ten_ForBaseInt(self,num,base):
-        value = []
-        number = num
-        conversion = ''
-        while abs(number) >= 1:
-            element = number % base
-            if base > 10 and element >= 10:
-                for chave in self.key:
-                    if self.plusten[chave] == element:
-                        element = chave
-            value.append(element)
-            number = int(number/base)
-        
-        value.reverse()
+    def ten_ForBase(self,num,base):
+        if type(num) == int:
+            value = []
+            number = num
+            conversion = ''
+            while abs(number) >= 1:
+                element = number % base
+                if base > 10 and element >= 10:
+                    for chave in self.key:
+                        if self.plusten[chave] == element:
+                            element = chave
+                value.append(element)
+                number = int(number/base)
+            
+            value.reverse()
 
-        for element in value:
-            conversion += str(element)
+            for element in value:
+                conversion += str(element)
+            
+            return conversion
+        else:
+            value_int = []
+            value_dec = [',']
+            number_int = int(num)
+            number_dec = num - number_int
+            part_int = ''
+
+            if number_int == 0:
+                value_int.append(0)
+
+            #Algoritmo para parte INTEIRA
+            while abs(number_int) >= 1:
+                element = number_int % base
+                if base > 10 and element >= 10:
+                    for chave in self.key:
+                        if self.plusten[chave] == element:
+                            element = chave
+                value_int.append(element)
+                number_int = int(number_int/base)
+            
+            value_int.reverse()
+
+            for element in value_int:
+                part_int += str(element)
+            
+            #Algoritmo para parte DECIMAL
+            flag = True
         
-        return conversion
+            values = []
+            while flag:
+                flag2 = False
+                mult = round(number_dec * base, 10)
+                aux = mult
+                if base > 10:
+                    for chave in self.key:
+                        if self.plusten[chave] == int(aux):
+                            aux = chave
+                            flag2 = True
+                            break
+
+                if flag2:
+                    value_dec.append(aux)
+                else:
+                    value_dec.append(int(aux))
+
+                number_dec = mult - int(mult)
+                values.append(number_dec)
+                if len(values) != len(set(values)):
+                    value_dec.append('...')
+                    flag = False
+                
+                if number_dec == 0:
+                    flag = False
+    
+            for element in value_dec:
+                part_int += str(element)
+            
+            return part_int
+
 
     def BaseFor10Int(self,num,base):
         string = str(num)
@@ -50,72 +110,18 @@ class Calculator:
             
         return conversion
     
-    def ten_ForBaseFloat(self,num,base):
-        value_int = []
-        value_dec = [',']
-        number_int = int(num)
-        number_dec = num - number_int
-        part_int = ''
-
-        if number_int == 0:
-            value_int.append(0)
-
-        #Algoritmo para parte INTEIRA
-        while abs(number_int) >= 1:
-            element = number_int % base
-            if base > 10 and element >= 10:
-                for chave in self.key:
-                    if self.plusten[chave] == element:
-                        element = chave
-            value_int.append(element)
-            number_int = int(number_int/base)
+    
         
-        value_int.reverse()
-
-        for element in value_int:
-            part_int += str(element)
-        
-        #Algoritmo para parte DECIMAL
-        flag = True
-       
-        values = []
-        while flag:
-            flag2 = False
-            mult = round(number_dec * base, 10)
-            aux = mult
-            if base > 10:
-                for chave in self.key:
-                    if self.plusten[chave] == int(aux):
-                        aux = chave
-                        flag2 = True
-                        break
-
-            if flag2:
-                value_dec.append(aux)
-            else:
-                value_dec.append(int(aux))
-
-            number_dec = mult - int(mult)
-            values.append(number_dec)
-            if len(values) != len(set(values)):
-                value_dec.append('...')
-                flag = False
-            
-            if number_dec == 0:
-                flag = False
- 
-        for element in value_dec:
-            part_int += str(element)
-        
-        return part_int
 
 
 
 '''
 Coisas a Fazer: Funcao de baseForTenFloat
+ajeitar o loop na funcao ten_ForBase
 
 '''
-
+a = Calculator()
+print(a.ten_ForBase(4546.679,16))
 
 
 
