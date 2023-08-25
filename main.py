@@ -5,8 +5,12 @@ class Calculator:
             'A':10,
             'B':11,
             'C':12,
-            'D':13
+            'D':13,
+            'E':14,
+            'F':15
         }
+
+        self.key = self.plusten.keys()
 
     def ten_ForBaseInt(self,num,base):
         value = []
@@ -14,6 +18,10 @@ class Calculator:
         conversion = ''
         while abs(number) >= 1:
             element = number % base
+            if base > 10 and element > 10:
+                for chave in self.key:
+                    if self.plusten[chave] == element:
+                        element = chave
             value.append(element)
             number = int(number/base)
         
@@ -22,13 +30,23 @@ class Calculator:
         for element in value:
             conversion += str(element)
         
-        return int(conversion)
+        return conversion
 
     def BaseFor10Int(self,num,base):
         string = str(num)
+        string_int = []
         conversion = 0
+        cont = 0
+
         for i in range(len(string)):
-            conversion += int(string[i]) * int(mt.pow(base,(len(string) - i - 1)))
+            if string[i] in self.key:
+                string_int.append(self.plusten[string[i]])
+            else:
+                string_int.append(int(string[i]))
+        
+        for i in string_int:
+            conversion += i * int(mt.pow(base,(len(string) - cont - 1)))
+            cont +=1
             
         return conversion
     
@@ -45,6 +63,10 @@ class Calculator:
         #Algoritmo para parte INTEIRA
         while abs(number_int) >= 1:
             element = number_int % base
+            if base > 10 and element > 10:
+                for chave in self.key:
+                    if self.plusten[chave] == element:
+                        element = chave
             value_int.append(element)
             number_int = int(number_int/base)
         
@@ -64,7 +86,6 @@ class Calculator:
             if len(values) != len(set(values)):
                 value_dec.append('...')
                 flag = False
-                
             
             if number_dec == 0:
                 flag = False
@@ -78,10 +99,8 @@ class Calculator:
 
 '''
 Coisas a Fazer: Funcao de baseForTenFloat
-solucionar quando a base for > 10
+
 '''
-
-
 
 
 
