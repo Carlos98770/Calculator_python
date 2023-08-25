@@ -18,7 +18,7 @@ class Calculator:
         conversion = ''
         while abs(number) >= 1:
             element = number % base
-            if base > 10 and element > 10:
+            if base > 10 and element >= 10:
                 for chave in self.key:
                     if self.plusten[chave] == element:
                         element = chave
@@ -63,7 +63,7 @@ class Calculator:
         #Algoritmo para parte INTEIRA
         while abs(number_int) >= 1:
             element = number_int % base
-            if base > 10 and element > 10:
+            if base > 10 and element >= 10:
                 for chave in self.key:
                     if self.plusten[chave] == element:
                         element = chave
@@ -77,10 +77,24 @@ class Calculator:
         
         #Algoritmo para parte DECIMAL
         flag = True
+       
         values = []
         while flag:
+            flag2 = False
             mult = round(number_dec * base, 10)
-            value_dec.append(int(mult))
+            aux = mult
+            if base > 10:
+                for chave in self.key:
+                    if self.plusten[chave] == int(aux):
+                        aux = chave
+                        flag2 = True
+                        break
+
+            if flag2:
+                value_dec.append(aux)
+            else:
+                value_dec.append(int(aux))
+
             number_dec = mult - int(mult)
             values.append(number_dec)
             if len(values) != len(set(values)):
