@@ -93,45 +93,50 @@ class Calculator:
             return part_int
 
 
-    def BaseFor10Int(self,num,base):
-        string = str(num)
-        string_int = []
-        conversion = 0
-        cont = 0
+    def BaseFor10(self,num,base):
+        if '.' not in num:
+            string = str(num)
+            string_int = []
+            conversion = 0
+            cont = 0
 
-        for i in range(len(string)):
-            if string[i] == '.':
-                continue
-            if string[i] in self.key:
-                string_int.append(self.plusten[string[i]])
-            else:
-                string_int.append(int(string[i]))
-        
-        for i in string_int:
-            conversion += i * int(mt.pow(base,(len(string) - cont - 1)))
-            cont +=1
+            for i in range(len(string)):
+                if string[i] in self.key:
+                    string_int.append(self.plusten[string[i]])
+                else:
+                    string_int.append(int(string[i]))
             
-        return conversion
+            for i in string_int:
+                conversion += i * int(mt.pow(base,(len(string) - cont - 1)))
+                cont +=1
+                
+            return conversion
+        else:
+            string = str(num)
+            string_int = []
+            conversion = 0
+            cont = 1
+
+            for i in range(len(string)):
+                if string[i] == '.':
+                    continue
+                if string[i] in self.key:
+                    string_int.append(self.plusten[string[i]])
+                else:
+                    string_int.append(int(string[i]))
+            
+            for i in string_int:
+                conversion += i * mt.pow(base, (len(string_int) - cont - 1))
+                cont = cont + 1
+            
+            return conversion
     
-    
-        
-
-
-
-'''
-Coisas a Fazer: Funcao de baseForTenFloat
-ajeitar o loop na funcao ten_ForBase
-
-'''
 a = Calculator()
-#print(a.BaseFor10Int('E34A.2',15))
+print(a.BaseFor10('E34A.2',15))
 
 
-nome = "car.asa"
-for i in range(len(nome)):
-    if nome[i] == '.':
-        continue
-    print(nome[i])
+
+
 
 
 
