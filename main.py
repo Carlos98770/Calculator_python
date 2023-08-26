@@ -7,7 +7,8 @@ class Calculator:
             'C':12,
             'D':13,
             'E':14,
-            'F':15
+            'F':15,
+            'G':16
         }
 
         self.key = self.plusten.keys()
@@ -99,6 +100,8 @@ class Calculator:
         cont = 0
 
         for i in range(len(string)):
+            if string[i] == '.':
+                continue
             if string[i] in self.key:
                 string_int.append(self.plusten[string[i]])
             else:
@@ -121,9 +124,15 @@ ajeitar o loop na funcao ten_ForBase
 
 '''
 a = Calculator()
-print(a.ten_ForBase(4546.679,16))
+#print(a.BaseFor10Int('E34A.2',15))
+
+
+nome = "car.asa"
+for i in range(len(nome)):
+    if nome[i] == '.':
+        continue
+    print(nome[i])
 
 
 
-
-
+ 
