@@ -94,8 +94,8 @@ class Calculator:
 
 
     def BaseFor10(self,num,base):
-        if '.' not in num:
-            string = str(num)
+        string = str(num)
+        if '.' not in string:
             string_int = []
             conversion = 0
             cont = 0
@@ -112,7 +112,7 @@ class Calculator:
                 
             return conversion
         else:
-            string = str(num)
+            
             string_int = []
             conversion = 0
             cont = 1
@@ -132,7 +132,9 @@ class Calculator:
             return conversion
     
 a = Calculator()
-print(a.BaseFor10('E34A.2',15))
+
+
+
 
 
 
