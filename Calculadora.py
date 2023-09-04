@@ -8,7 +8,11 @@ class Calculator:
             'D':13,
             'E':14,
             'F':15,
-            'G':16
+            'G':16,
+            'H':17,
+            'I':18,
+            'J':19,
+            'K':20
         }
 
         self.key = self.plusten.keys()
@@ -95,6 +99,12 @@ class Calculator:
 
     def BaseFor10(self,num,base):
         string = str(num)
+        sinal = 0
+        if string[0] == '-':
+            sinal = -1
+            string = string[1:]
+        else:
+            sinal = 1
         if '.' not in string:
             string_int = []
             convertion = 0
@@ -110,7 +120,7 @@ class Calculator:
                 convertion += i * int(mt.pow(base,(len(string) - cont - 1)))
                 cont +=1
                 
-            return convertion
+            return convertion*sinal
         else:
             
             string_int = []
@@ -131,13 +141,12 @@ class Calculator:
                 convertion += i * mt.pow(base, (n- cont))
                 cont = cont + 1
             
-            return convertion
+            return convertion*sinal
         
     def soma(self,num1,num2,base1,base2):
         number1 = self.BaseFor10(num1,base1)
         number2 = self.BaseFor10(num2,base2)
-        print(number1)
-        print(number2)
+        
         soma = round(number1 + number2,5)
 
         print(f"SOMA NA BASE 10: {soma}")
@@ -147,35 +156,47 @@ class Calculator:
     def subtraçao(self,num1,num2,base1,base2):
         number1 = self.BaseFor10(num1,base1)
         number2 = self.BaseFor10(num2,base2)
-        print(number1)
-        print(number2)
-        soma = round(number1 - number2,5)
+        
+        soma = number1 - number2
+        if soma < 0:
+            print(f"SUBTRAÇÃO NA BASE 10: {soma}")
+            print(f"SUBTRAÇÃO NA BASE {base1}: -{self.ten_ForBase(abs(soma),base1)}")
+            print(f"SUBTRAÇÃO NA BASE {base2}: -{self.ten_ForBase(abs(soma),base2)}")
+        else:
+            print(f"SUBTRAÇÃO NA BASE 10: {soma}")
+            print(f"SUBTRAÇÃO NA BASE {base1}: {self.ten_ForBase(soma,base1)}")
+            print(f"SUBTRAÇÃO NA BASE {base2}: {self.ten_ForBase(soma,base2)}")
 
-        print(f"SUBTRAÇÃO NA BASE 10: {soma}")
-        print(f"SUBTRAÇÃO NA BASE {base1}: {self.ten_ForBase(soma,base1)}")
-        print(f"SUBTRAÇÃO NA BASE {base2}: {self.ten_ForBase(soma,base2)}")
-    
+
     def multiplication(self,num1,num2,base1,base2):
         number1 = self.BaseFor10(num1,base1)
         number2 = self.BaseFor10(num2,base2)
-        print(number1)
-        print(number2)
-        soma = round(number1 * number2,5)
+       
+        soma = number1 * number2
 
-        print(f"MULTIPLICAÇÃO NA BASE 10: {soma}")
-        print(f"MULTIPLICAÇÃO NA BASE {base1}: {self.ten_ForBase(soma,base1)}")
-        print(f"MULTIPLICAÇÃO NA BASE {base2}: {self.ten_ForBase(soma,base2)}")
+        if soma > 0:
+            print(f"MULTIPLICAÇÃO NA BASE 10: {soma}")
+            print(f"MULTIPLICAÇÃO NA BASE {base1}: {self.ten_ForBase(soma,base1)}")
+            print(f"MULTIPLICAÇÃO NA BASE {base2}: {self.ten_ForBase(soma,base2)}")
+        else:
+            print(f"MULTIPLICAÇÃO NA BASE 10: {soma}")
+            print(f"MULTIPLICAÇÃO NA BASE {base1}: -{self.ten_ForBase(abs(soma),base1)}")
+            print(f"MULTIPLICAÇÃO NA BASE {base2}: -{self.ten_ForBase(abs(soma),base2)}")
 
     def divisao(self,num1,num2,base1,base2):
         number1 = self.BaseFor10(num1,base1)
         number2 = self.BaseFor10(num2,base2)
-        print(number1)
-        print(number2)
-        soma = round(number1 / number2,5)
+    
+        soma = number1 / number2
+        if soma > 0:
+            print(f"DIVISÃO NA BASE 10: {soma}")
+            print(f"DIVISÃO NA BASE {base1}: {self.ten_ForBase(soma,base1)}")
+            print(f"DIVISÃO NA BASE {base2}: {self.ten_ForBase(soma,base2)}")
+        else:
+            print(f"DIVISÃO NA BASE 10: {soma}")
+            print(f"DIVISÃO NA BASE {base1}: -{self.ten_ForBase(abs(soma),base1)}")
+            print(f"DIVISÃO NA BASE {base2}: -{self.ten_ForBase(abs(soma),base2)}")
 
-        print(f"DIVISÃO NA BASE 10: {soma}")
-        print(f"DIVISÃO NA BASE {base1}: {self.ten_ForBase(soma,base1)}")
-        print(f"DIVISÃO NA BASE {base2}: {self.ten_ForBase(soma,base2)}")
 
 
  
