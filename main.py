@@ -1,7 +1,7 @@
 from Calculadora import Calculator as CALC
 
 calculadora = CALC()
-'''
+
 while True:
     print("---------------------CONVERSÃO DE BASE-------------------------")
 
@@ -26,7 +26,7 @@ while True:
     continuacao = input("DESEJA CONVERTER OUTRO NUMERO? (S/N)")
     if continuacao == 'N':
         break
-'''
+
 while True:
     print("-------------------------OPERAÇÕES-------------------------------")
     num1 = input("DIGITE SEU NUMERO 1: ")
