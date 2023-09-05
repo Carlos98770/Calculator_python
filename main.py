@@ -11,7 +11,7 @@ while True:
     print("----------------------------------------------------------------")
 
     a = calculadora.BaseFor10(num,base)
-     
+   
     if a > 0:
         b = calculadora.ten_ForBase(a,base_ida)
         print(f"O NUMERO {num} NA BASE {base_ida} É = {b} ")

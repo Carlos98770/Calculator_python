@@ -68,7 +68,7 @@ class Calculator:
             values = []
             while flag:
                 flag2 = False
-                mult = round(number_dec * base, 10)
+                mult = number_dec * base
                 aux = mult
                 if base > 10:
                     for chave in self.key:
@@ -83,7 +83,7 @@ class Calculator:
                     value_dec.append(int(aux))
 
                 number_dec = mult - int(mult)
-                values.append(number_dec)
+                values.append(round(number_dec,2))
                 if len(values) != len(set(values)):
                     value_dec.append('...')
                     flag = False
@@ -146,8 +146,8 @@ class Calculator:
     def soma(self,num1,num2,base1,base2):
         number1 = self.BaseFor10(num1,base1)
         number2 = self.BaseFor10(num2,base2)
-        
-        soma = round(number1 + number2,5)
+    
+        soma = number1 + number2
 
         print(f"SOMA NA BASE 10: {soma}")
         print(f"SOMA NA BASE {base1}: {self.ten_ForBase(soma,base1)}")
